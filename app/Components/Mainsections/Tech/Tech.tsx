@@ -50,6 +50,13 @@ let TechContainer = styled.div`
     .tech-container{
         max-width: 70%;
     }
+    .ball:hover{
+        cursor: grab;
+    }
+
+    .ball:active{
+        cursor: grabbing;
+    }
 
     @media only screen and (max-width: 770px){
         h1{

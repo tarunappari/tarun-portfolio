@@ -108,6 +108,7 @@ let ProjectContainer = styled.div`
         display: flex ;
       flex-direction: column ;
       justify-content: space-between;
+      cursor: pointer;
       }
 
       .card-item{

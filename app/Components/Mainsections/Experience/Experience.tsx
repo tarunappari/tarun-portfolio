@@ -75,6 +75,7 @@ const ExperienceContainer = styled.div`
                 display: flex;
                 justify-content: space-between;
                 min-width: 90vw;
+                cursor: grab;
             }
 
             .info-text {

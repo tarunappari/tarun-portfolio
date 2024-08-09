@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, Suspense } from "react";
 import styled from "styled-components";
 import { BackgroundBeams } from "../../ui/BackgroundBeams";
 import scroll from "../../../../public/scroll.png";
@@ -10,6 +10,12 @@ import { textVariant } from '../../../motion/motion';
 import { SectionWrapper } from "@/app/hoc";
 import gsap from 'gsap';
 import myImg from '../../../../public/white-crop.png';
+import { Canvas } from '@react-three/fiber';
+import { Environment, OrbitControls } from "@react-three/drei";
+import dynamic from 'next/dynamic';
+
+const TechGuy = dynamic(() => import("../../models/TechGuy"), { suspense: true });
+const Computer = dynamic(() => import("../../models/Computer"), { suspense: true });
 
 const Hero: React.FC = () => {
 
@@ -35,6 +41,46 @@ const Hero: React.FC = () => {
     },
   };
   const [loader, setLoader] = useState(true);
+  // const [TechguyScale, TechguySetScale] = useState(1.3);
+  // const [computerScale, computerSetScale] = useState(1.1);
+  // const [TechguyPosition, TechguySetPosition] = useState([0, -2, -1.2]);
+  // const [computerPosition, computerSetPosition] = useState([0, -0.5, 1.2]);
+
+  // // Handle resize and set states accordingly
+  // const handleResize = useCallback(() => {
+  //   const width = window.innerWidth;
+
+  //   if (width < 650) {
+  //     TechguySetScale(1.6);
+  //     computerSetScale(1.4);
+  //     TechguySetPosition([0, -1.9, -1.8]);
+  //     computerSetPosition([0, -0.1, 1.5]);
+  //   } else if (width < 910) {
+  //     TechguySetScale(1);
+  //     computerSetScale(0.8);
+  //     TechguySetPosition([0, -1.6, -0.9]);
+  //     computerSetPosition([0, -0.5, 0.9]);
+  //   } else {
+  //     TechguySetScale(1.3);
+  //     computerSetScale(1.1);
+  //     TechguySetPosition([0, -2, -1.2]);
+  //     computerSetPosition([0, -0.5, 1.2]);
+  //   }
+  // }, []);
+
+  // useEffect(() => {
+  //   handleResize();
+  //   window.addEventListener('resize', handleResize);
+
+  //   const timeoutId = window.setTimeout(() => {
+  //     setLoader(false);
+  //   }, 5000);
+
+  //   return () => {
+  //     window.removeEventListener('resize', handleResize);
+  //     clearTimeout(timeoutId);
+  //   };
+  // }, [handleResize]);
 
   useEffect(() => {
     function startLoader() {
@@ -115,12 +161,12 @@ const Hero: React.FC = () => {
           </div>
         </div>
       )}
-      <div className="hero-container text">
+      <div className="hero-container">
         <div className="hero-image-container text-element">
           {/* <Canvas>
             <ambientLight intensity={-1} />
             <OrbitControls enableZoom={false} />
-            <Suspense fallback={<CanvasLoader />}>
+            <Suspense fallback={null}>
               <TechGuy position={TechguyPosition} scale={[TechguyScale, TechguyScale, TechguyScale]} />
               <Computer position={computerPosition} scale={[computerScale, computerScale, computerScale]} />
             </Suspense>
@@ -189,6 +235,7 @@ let HeroContainer = styled.div`
     width: 10vw;
     height: 120vh;
     background: #1a1a1a;
+    z-index: 999 !important;
 }
 
 .counter{
@@ -218,11 +265,16 @@ let HeroContainer = styled.div`
     justify-content: center;
     align-items: center;
 
+
     .my-img{
       width: 25rem;
       margin-top: -5rem;
       padding-left: 2rem;
     }
+  }
+
+  .hero-image-container:active{
+    cursor: grabbing;
   }
 
   .hero-info {
@@ -333,6 +385,10 @@ let HeroContainer = styled.div`
       margin-top: -1rem;
       margin-left: -2rem;
     }
+
+      canvas{
+        min-height: 50vh !important;
+      }
       
     }
 
