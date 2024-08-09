@@ -4,25 +4,27 @@ import { Points, PointMaterial, Preload } from '@react-three/drei';
 import { inSphere } from 'maath/random';
 import * as THREE from 'three';
 
-interface StarsProps {
-  [key: string]: any;
-}
-
-const Stars: React.FC<StarsProps> = (props) => {
+const Stars: React.FC = (props) => {
   const ref = useRef<THREE.Points>(null!);
 
-  // Create sphere positions as Float32Array
-  const [sphere] = useState<Float32Array>(() => {
+  // Initialize sphere positions
+  const [sphere] = useState(() => {
     const positions = new Float32Array(5000);
-    inSphere(positions, { radius: 0.6 });
+    inSphere(positions, { radius: 1.2 });
+
+    // Debugging: Check if there are NaN values
+    for (let i = 0; i < positions.length; i++) {
+      if (isNaN(positions[i])) {
+        console.error('NaN value found in positions array at index', i);
+      }
+    }
+
     return positions;
   });
 
   useFrame((state, delta) => {
-    if (ref.current) {
-      ref.current.rotation.y -= delta / 20; // Rotate around Y axis
-      ref.current.rotation.z -= delta / 25; // Rotate around Z axis
-    }
+    ref.current.rotation.x -= delta / 10;
+    ref.current.rotation.y -= delta / 15;
   });
 
   return (
@@ -30,9 +32,9 @@ const Stars: React.FC<StarsProps> = (props) => {
       <Points ref={ref} positions={sphere} stride={3} frustumCulled {...props}>
         <PointMaterial
           transparent
-          color='#f8a1db'
-          size={0.0007}
-          sizeAttenuation
+          color="#f272c8"
+          size={0.002}
+          sizeAttenuation={true}
           depthWrite={false}
         />
       </Points>
@@ -42,7 +44,7 @@ const Stars: React.FC<StarsProps> = (props) => {
 
 const StarsCanvas: React.FC = () => {
   return (
-    <div className='w-full p h-auto absolute inset-0 z-[-1]'>
+    <div className="w-full h-auto absolute inset-0 z-[-1]">
       <Canvas camera={{ position: [0, 0, 1] }}>
         <Suspense fallback={null}>
           <Stars />

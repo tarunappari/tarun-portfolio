@@ -1,6 +1,5 @@
 import React, { Suspense, useEffect, useState, useCallback,memo  } from "react";
 import styled from 'styled-components';
-import { BackgroundBeams } from '../../ui/BackgroundBeams';
 import { SectionWrapper } from '@/app/hoc';
 import { ContactForm } from './ContactForm';
 import { Canvas } from '@react-three/fiber';

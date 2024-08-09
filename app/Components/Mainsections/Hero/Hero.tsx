@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState, useCallback, Suspense } from "react";
 import styled from "styled-components";
-import { BackgroundBeams } from "../../ui/BackgroundBeams";
 import scroll from "../../../../public/scroll.png";
 import Image from "next/image";
 import { motion, Variants } from "framer-motion";
@@ -133,7 +132,6 @@ const Hero: React.FC = () => {
         },
         ease: 'power4.inOut',
         onComplete: () => {
-          console.log('Animation Complete!');
           setLoader(false); // Hide preloader
         },
       });
