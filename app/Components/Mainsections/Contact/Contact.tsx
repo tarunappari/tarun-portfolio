@@ -1,6 +1,8 @@
 import React, { Suspense, useEffect, useState, useCallback,memo  } from "react";
 import styled from 'styled-components';
 import { SectionWrapper } from '@/app/hoc';
+import { motion, Variants} from 'framer-motion'
+import {  fadeIn, slideIn } from "../../../motion/motion";
 import { ContactForm } from './ContactForm';
 import { Canvas } from '@react-three/fiber';
 import { Environment, OrbitControls } from "@react-three/drei";
@@ -15,12 +17,12 @@ const Contact : React.FC = () => {
 
   return (
     <ContactContainer>
-      <div className='form-container xl:flex-1 xl:h-auto md:h-[550px] h-[350px]'>
+      <motion.div variants={fadeIn('right','tween',1,1)} className='form-container xl:flex-1 xl:h-auto md:h-[550px] h-[350px]'>
         <ContactForm />
-      </div>
-      <div className='globe-continer xl:flex-1 xl:h-auto md:h-[550px] h-[350px]'>
+      </motion.div>
+      <motion.div variants={fadeIn('left','tween',1,1)} className='globe-continer xl:flex-1 xl:h-auto md:h-[550px] h-[350px]'>
         <EarthCanvas />
-      </div>
+      </motion.div>
     </ContactContainer>
   )
 }
@@ -32,6 +34,7 @@ let ContactContainer = styled.div`
     min-height: 100vh;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    overflow: hidden !important;
     .form-container,.globe-continer{
       display: flex;
       justify-content: center;

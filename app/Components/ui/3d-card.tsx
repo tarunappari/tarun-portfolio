@@ -9,7 +9,7 @@ import React, {
   useRef,
   useEffect,
 } from "react";
-import { slideIn, textVariant } from '../../motion/motion';
+import { fadeIn, slideIn, textVariant } from '../../motion/motion';
 
 const MouseEnterContext = createContext<
   [boolean, React.Dispatch<React.SetStateAction<boolean>>] | undefined

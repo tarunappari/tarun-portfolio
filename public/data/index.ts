@@ -60,54 +60,67 @@ export const navItems = [
     {
       name: "HTML 5",
       icon: "/TechIcons/html.png",
+      num:0.1,
     },
     {
       name: "CSS 3",
       icon: "/TechIcons/css.png",
+      num:0.2
     },
     {
       name: "JavaScript",
       icon: "/TechIcons/javascript.png",
+      num:0.3
     },
     {
       name: "React JS",
       icon: "/TechIcons/reactjs.png",
+      num:0.4
     },
     {
       name: "Redux",
       icon: "/TechIcons/redux.png",
+      num:0.5
     },
     {
       name: "firebase",
       icon: "/TechIcons/firebase.svg",
+      num:0.6
     },
     {
       name: "framer-motion",
       icon: "/TechIcons/fm.svg",
+      num:0.7
     },
     {
       name: "Tailwind CSS",
       icon: "/TechIcons/tailwind.png",
+      num:0.8
     },
     {
       name: "Node JS",
       icon: "/TechIcons/nodejs.png",
+      num:0.9
     },
     {
       name: "MongoDB",
       icon: "/TechIcons/mongodb.png",
+      num:1
     },
     {
       name: "Three JS",
       icon: "/TechIcons/threejs.svg",
+      num:1.1
     },
     {
       name: "git",
       icon: "/TechIcons/git.png",
+      num:1.2
     },
     {
       name: "TypeScript",
       icon: "/TechIcons/typeScript.png",
+      num:1.3
     },
   ];
 

@@ -58,6 +58,7 @@ export default SectionWrapper(Projects , 'projects');
 
 let ProjectsMainContainer = styled.div`
       margin-top: -2rem;
+      overflow: hidden !important;
      .featured-container{
       min-width: 100%;
       text-align: center;

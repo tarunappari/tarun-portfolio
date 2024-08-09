@@ -3,6 +3,8 @@ import dynamic from "next/dynamic";
 import { SectionWrapper } from "../../../hoc";
 import { technologies } from "../../../../public/data";
 import styled from "styled-components";
+import { motion, Variants} from 'framer-motion'
+import {  fadeIn, slideIn } from "../../../motion/motion";
 
 // Use dynamic import for BallCanvas if it's a heavy component
 const BallCanvas = dynamic(() => import("../../ui/BallCanvas"), { ssr: false });
@@ -21,9 +23,9 @@ const Tech: React.FC = () => {
             </div>
             <div className='tech-container flex flex-row flex-wrap justify-center gap-10'>
                 {technologies.map((technology: Technology) => (
-                    <div className='w-20 h-20 ball' key={technology.name}>
+                    <motion.div variants={fadeIn('up','spring',technology.num,0.5)} className='w-20 h-20 ball' key={technology.name}>
                         <BallCanvas icon={technology.icon} />
-                    </div>
+                    </motion.div>
                 ))}
             </div>
         </TechContainer>

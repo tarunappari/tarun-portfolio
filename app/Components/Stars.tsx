@@ -32,8 +32,8 @@ const Stars: React.FC = (props) => {
       <Points ref={ref} positions={sphere} stride={3} frustumCulled {...props}>
         <PointMaterial
           transparent
-          color="#f272c8"
-          size={0.002}
+          color="#f5bee3"
+          size={0.0009}
           sizeAttenuation={true}
           depthWrite={false}
         />
