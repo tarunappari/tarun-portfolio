@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Navbar } from './Components/Mainsections/Navbar/Navbar';
-import Hero from './Components/Mainsections/Hero/Hero';
+import Hero from './Components/Mainsections/Hero/test';
 import { navItems } from '../public/data';
 import Projects from './Components/Mainsections/Projects/Projects';
 import { GlobalStyles } from './GlobalStyles';
@@ -17,7 +17,7 @@ export default function Home() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowStarsCanvas(true);
-    }, 8000); // 5000 milliseconds = 8 seconds
+    }, 5000); // 5000 milliseconds = 8 seconds
 
     return () => clearTimeout(timer); // Clean up the timer on component unmount
   }, []);

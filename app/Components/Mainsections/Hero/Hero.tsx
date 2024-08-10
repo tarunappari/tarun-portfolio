@@ -14,7 +14,7 @@ import { Environment, OrbitControls } from "@react-three/drei";
 import dynamic from 'next/dynamic';
 import CanvasLoader from "../../Loader";
 
-const TechGuy = dynamic(() => import("../../models/Butterfly"), { suspense: true });
+const TechGuy = dynamic(() => import("../../models/TechGuy"), { suspense: true });
 const Computer = dynamic(() => import("../../models/Computer"), { suspense: true });
 
 const Hero: React.FC = () => {
@@ -146,7 +146,7 @@ const Hero: React.FC = () => {
             <OrbitControls enableZoom={false} />
             <Suspense fallback={<CanvasLoader />}>
               <TechGuy position={TechguyPosition} scale={[TechguyScale, TechguyScale, TechguyScale]} />
-              {/* <Computer position={computerPosition} scale={[computerScale, computerScale, computerScale]} /> */}
+              <Computer position={computerPosition} scale={[computerScale, computerScale, computerScale]} />
             </Suspense>
             <Environment preset="studio" background={false} resolution={256} />
           </Canvas>
