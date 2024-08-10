@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { SectionWrapper } from "../../../hoc";
 import { technologies } from "../../../../public/data";
@@ -9,7 +9,6 @@ import { fadeIn } from "../../../motion/motion";
 // Use dynamic import for BallCanvas if it's a heavy component
 const BallCanvas = dynamic(() => import("../../ui/BallCanvas"), { ssr: false });
 
-// Define the type for a single technology
 interface Technology {
     name: string;
     icon: string;
@@ -17,8 +16,34 @@ interface Technology {
 }
 
 const Tech: React.FC = () => {
+    const [inView, setInView] = useState<string | null>(null);
+    const techRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setInView('inView');
+                } else {
+                    setInView(null);
+                }
+            },
+            { threshold: 0.1 }
+        );
+
+        if (techRef.current) {
+            observer.observe(techRef.current);
+        }
+
+        return () => {
+            if (techRef.current) {
+                observer.unobserve(techRef.current);
+            }
+        };
+    }, []);
+
     return (
-        <TechContainer>
+        <TechContainer ref={techRef}>
             <div>
                 <h1 className="h1 span-gradient">Technologies</h1>
             </div>
@@ -29,7 +54,7 @@ const Tech: React.FC = () => {
                         className='w-20 h-20 ball'
                         key={technology.name}
                     >
-                        <BallCanvas icon={technology.icon} />
+                        {inView === 'inView' && <BallCanvas icon={technology.icon} />}
                     </motion.div>
                 ))}
             </div>
