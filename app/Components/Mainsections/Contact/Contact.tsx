@@ -21,7 +21,7 @@ const Contact : React.FC = () => {
         <ContactForm />
       </motion.div>
       <motion.div variants={fadeIn('left','tween',1,1)} className='globe-continer xl:flex-1 xl:h-auto md:h-[550px] h-[350px]'>
-        {/* <EarthCanvas /> */}Earth
+        <EarthCanvas />
       </motion.div>
     </ContactContainer>
   )
