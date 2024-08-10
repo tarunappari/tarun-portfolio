@@ -9,25 +9,32 @@ import { fadeIn } from "../../../motion/motion";
 // Use dynamic import for BallCanvas if it's a heavy component
 const BallCanvas = dynamic(() => import("../../ui/BallCanvas"), { ssr: false });
 
+// Define the type for a single technology
+interface Technology {
+    name: string;
+    icon: string;
+    num: number;
+}
+
 const Tech: React.FC = () => {
-  return (
-    <TechContainer>
-      <div>
-        <h1 className="h1 span-gradient">Technologies</h1>
-      </div>
-      <div className='tech-container flex flex-row flex-wrap justify-center gap-10'>
-        {technologies.map((technology) => (
-          <motion.div
-            key={technology.name}
-            variants={fadeIn('up', 'spring', technology.num, 0.5)}
-            className='w-20 h-20 ball'
-          >
-            <BallCanvas icon={technology.icon} />
-          </motion.div>
-        ))}
-      </div>
-    </TechContainer>
-  );
+    return (
+        <TechContainer>
+            <div>
+                <h1 className="h1 span-gradient">Technologies</h1>
+            </div>
+            <div className='tech-container flex flex-row flex-wrap justify-center gap-10'>
+                {technologies.map((technology: Technology) => (
+                    <motion.div
+                        variants={fadeIn('up', 'spring', technology.num, 0.5)}
+                        className='w-20 h-20 ball'
+                        key={technology.name}
+                    >
+                        <BallCanvas icon={technology.icon} />
+                    </motion.div>
+                ))}
+            </div>
+        </TechContainer>
+    );
 };
 
 export default SectionWrapper(Tech, "");
@@ -40,50 +47,49 @@ let TechContainer = styled.div`
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    h1{
+    h1 {
         align-self: flex-start;
         font-size: 3rem;
         font-weight: 700;
         padding-bottom: 5rem;
     }
-    .tech-container{
+    .tech-container {
         max-width: 70%;
     }
-    .ball:hover{
+    .ball:hover {
         cursor: grab;
     }
 
-    .ball:active{
+    .ball:active {
         cursor: grabbing;
     }
 
-    @media only screen and (max-width: 770px){
-        h1{
+    @media only screen and (max-width: 770px) {
+        h1 {
             font-size: 2.5rem;
             padding-bottom: 2rem;
         }
-        .tech-container{
+        .tech-container {
             gap: 0.5rem !important;
             min-width: 85vw !important;
         }
-        .ball{
+        .ball {
             width: 6rem;
             height: 6rem;
         }
     }
 
-    @media only screen and (max-width:490px){
-        h1{
+    @media only screen and (max-width: 490px) {
+        h1 {
             font-size: 1.9rem;
         }
-        .ball{
+        .ball {
             width: 3.35rem;
             height: 3.35rem;
         }
-        .tech-container{
+        .tech-container {
             gap: 0.5rem !important;
             min-width: 90vw !important;
         }
     }
-
-`
+`;
