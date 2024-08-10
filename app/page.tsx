@@ -30,7 +30,7 @@ export default function Home() {
         <Hero idName="#hero" />
         <Experience idName="" />
         <Projects idName="#projects" />
-        <Tech idName="tech" />
+        {/* <Tech idName="tech" /> */}
         <Contact idName="#contact" />
         {showStarsCanvas && <StarsCanvas />} {/* Conditionally render StarsCanvas */}
       </div>
