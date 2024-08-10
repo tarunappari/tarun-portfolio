@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Navbar } from './Components/Mainsections/Navbar/Navbar';
-import Hero from './Components/Mainsections/Hero/test';
+import Hero from './Components/Mainsections/Hero/Hero';
 import { navItems } from '../public/data';
 import Projects from './Components/Mainsections/Projects/Projects';
 import { GlobalStyles } from './GlobalStyles';
@@ -31,7 +31,7 @@ export default function Home() {
         <Experience idName="" />
         <Projects idName="#projects" />
         <Tech idName="tech" />
-        {/* <Contact idName="#contact" /> */}
+        <Contact idName="#contact" />
         {showStarsCanvas && <StarsCanvas />} {/* Conditionally render StarsCanvas */}
       </div>
     </main>
