@@ -8,7 +8,6 @@ import { GlobalStyles } from './GlobalStyles';
 import Experience from "./Components/Mainsections/Experience/Experience";
 import Contact from "./Components/Mainsections/Contact/Contact";
 import Tech from "./Components/Mainsections/Tech/Tech";
-import Scroll from "./Components/Scroll";
 import StarsCanvas from "./Components/Stars";
 
 export default function Home() {
@@ -22,7 +21,6 @@ export default function Home() {
         <Projects idName="#projects" />
         <Tech idName="tech" />
         <Contact idName="#contact" />
-        <StarsCanvas />
       </div>
     </main>
   );
