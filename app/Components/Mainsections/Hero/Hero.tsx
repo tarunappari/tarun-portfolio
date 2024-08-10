@@ -181,8 +181,8 @@ const Hero: React.FC = () => {
       )}
       <div className="hero-container">
         <div className="hero-image-container text-element">
-          <Canvas>
-            <ambientLight intensity={-1} />
+        <Canvas>
+            <ambientLight intensity={0.5} />
             <OrbitControls enableZoom={false} />
             <Suspense fallback={<CanvasLoader />}>
               <TechGuy position={TechguyPosition} scale={[TechguyScale, TechguyScale, TechguyScale]} />
@@ -283,6 +283,9 @@ let HeroContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    width: 100%;
+    height: 100vh;
 
 
     .my-img{
