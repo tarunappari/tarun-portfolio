@@ -39,6 +39,7 @@ export default SectionWrapper(Experience , '');
 const ExperienceContainer = styled.div`
     min-height: 100vh;
 
+
     .exp-title {
         padding: 0.5rem;
         text-align: center;
@@ -120,6 +121,13 @@ const ExperienceContainer = styled.div`
         .info-text {
             padding-bottom: 0rem !important;
         }
+
+        .reveal-text{
+        font-size: 1.6rem !important;
+    }
+    .upper-text{
+        font-size: 1.5rem !important;
+    }
     }
 
     @media only screen and (max-width: 480px) {
