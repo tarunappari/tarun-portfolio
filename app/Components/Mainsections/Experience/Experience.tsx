@@ -123,10 +123,10 @@ const ExperienceContainer = styled.div`
         }
 
         .reveal-text{
-        font-size: 1.6rem !important;
+        font-size: 1.75rem !important;
     }
     .upper-text{
-        font-size: 1.5rem !important;
+        font-size: 1.7rem !important;
     }
     }
 
