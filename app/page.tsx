@@ -20,7 +20,7 @@ export default function Home() {
         <Experience idName="" />
         <Projects idName="#projects" />
         <Tech idName="tech" />
-        {/* <Contact idName="#contact" /> */}
+        <Contact idName="#contact" />
       </div>
     </main>
   );
