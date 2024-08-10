@@ -40,46 +40,46 @@ const Hero: React.FC = () => {
     },
   };
   const [loader, setLoader] = useState(true);
-  // const [TechguyScale, TechguySetScale] = useState(1.3);
-  // const [computerScale, computerSetScale] = useState(1.1);
-  // const [TechguyPosition, TechguySetPosition] = useState([0, -2, -1.2]);
-  // const [computerPosition, computerSetPosition] = useState([0, -0.5, 1.2]);
+  const [TechguyScale, TechguySetScale] = useState(1.3);
+  const [computerScale, computerSetScale] = useState(1.1);
+  const [TechguyPosition, TechguySetPosition] = useState([0, -2, -1.2]);
+  const [computerPosition, computerSetPosition] = useState([0, -0.5, 1.2]);
 
-  // // Handle resize and set states accordingly
-  // const handleResize = useCallback(() => {
-  //   const width = window.innerWidth;
+  // Handle resize and set states accordingly
+  const handleResize = useCallback(() => {
+    const width = window.innerWidth;
 
-  //   if (width < 650) {
-  //     TechguySetScale(1.6);
-  //     computerSetScale(1.4);
-  //     TechguySetPosition([0, -1.9, -1.8]);
-  //     computerSetPosition([0, -0.1, 1.5]);
-  //   } else if (width < 910) {
-  //     TechguySetScale(1);
-  //     computerSetScale(0.8);
-  //     TechguySetPosition([0, -1.6, -0.9]);
-  //     computerSetPosition([0, -0.5, 0.9]);
-  //   } else {
-  //     TechguySetScale(1.3);
-  //     computerSetScale(1.1);
-  //     TechguySetPosition([0, -2, -1.2]);
-  //     computerSetPosition([0, -0.5, 1.2]);
-  //   }
-  // }, []);
+    if (width < 650) {
+      TechguySetScale(1.6);
+      computerSetScale(1.4);
+      TechguySetPosition([0, -1.9, -1.8]);
+      computerSetPosition([0, -0.1, 1.5]);
+    } else if (width < 910) {
+      TechguySetScale(1);
+      computerSetScale(0.8);
+      TechguySetPosition([0, -1.6, -0.9]);
+      computerSetPosition([0, -0.5, 0.9]);
+    } else {
+      TechguySetScale(1.3);
+      computerSetScale(1.1);
+      TechguySetPosition([0, -2, -1.2]);
+      computerSetPosition([0, -0.5, 1.2]);
+    }
+  }, []);
 
-  // useEffect(() => {
-  //   handleResize();
-  //   window.addEventListener('resize', handleResize);
+  useEffect(() => {
+    handleResize();
+    window.addEventListener('resize', handleResize);
 
-  //   const timeoutId = window.setTimeout(() => {
-  //     setLoader(false);
-  //   }, 5000);
+    const timeoutId = window.setTimeout(() => {
+      setLoader(false);
+    }, 5000);
 
-  //   return () => {
-  //     window.removeEventListener('resize', handleResize);
-  //     clearTimeout(timeoutId);
-  //   };
-  // }, [handleResize]);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      clearTimeout(timeoutId);
+    };
+  }, [handleResize]);
 
   useEffect(() => {
     function startLoader() {
@@ -176,7 +176,7 @@ const Hero: React.FC = () => {
       )}
       <div className="hero-container">
         <div className="hero-image-container text-element">
-          {/* <Canvas>
+          <Canvas>
             <ambientLight intensity={-1} />
             <OrbitControls enableZoom={false} />
             <Suspense fallback={null}>
@@ -184,8 +184,8 @@ const Hero: React.FC = () => {
               <Computer position={computerPosition} scale={[computerScale, computerScale, computerScale]} />
             </Suspense>
             <Environment preset="studio" background={false} resolution={256} />
-          </Canvas> */}
-          <Image src={ myImg } alt="myImg" className="my-img" />
+          </Canvas>
+          {/* <Image src={ myImg } alt="myImg" className="my-img" /> */}
         </div>
         <div
           className="hero-info text"

@@ -7,7 +7,6 @@ import { ContactForm } from './ContactForm';
 import { Canvas } from '@react-three/fiber';
 import { Environment, OrbitControls } from "@react-three/drei";
 import dynamic from 'next/dynamic';
-import EarthCanvas from "./Earth";
 
 const TechGuy = dynamic(() => import("../../models/TechGuy"), { suspense: true });
 const Computer = dynamic(() => import("../../models/Computer"), { suspense: true });
@@ -21,7 +20,7 @@ const Contact : React.FC = () => {
         <ContactForm />
       </motion.div>
       <motion.div variants={fadeIn('left','tween',1,1)} className='globe-continer xl:flex-1 xl:h-auto md:h-[550px] h-[350px]'>
-        <EarthCanvas />
+
       </motion.div>
     </ContactContainer>
   )
