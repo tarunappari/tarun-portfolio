@@ -1,18 +1,11 @@
 import React, { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
-import {
-  Decal,
-  Float,
-  OrbitControls,
-  Preload,
-  useTexture,
-} from "@react-three/drei";
-
+import { Decal, Float, OrbitControls, Preload, useTexture } from "@react-three/drei";
 import CanvasLoader from "../Loader";
 
 interface BallProps {
     imgUrl: string;
-  }
+}
 
 const Ball: React.FC<BallProps> = ({ imgUrl }) => {
   const [decal] = useTexture([imgUrl]);
@@ -41,21 +34,20 @@ const Ball: React.FC<BallProps> = ({ imgUrl }) => {
 };
 
 const BallCanvas: React.FC<{ icon: string }> = ({ icon }) => {
-
   return (
     <Canvas
       frameloop='demand'
       dpr={[1, 2]}
       gl={{ preserveDrawingBuffer: true }}
+      onCreated={(state) => state.gl.setPixelRatio(window.devicePixelRatio)} // Optimize for high-DPI displays
     >
       <Suspense fallback={<CanvasLoader />}>
         <OrbitControls enableZoom={false} />
         <Ball imgUrl={icon} />
       </Suspense>
-
       <Preload all />
     </Canvas>
   );
 };
 
-export default BallCanvas;
+export default React.memo(BallCanvas); // Optimize by memoizing the component

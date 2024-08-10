@@ -3,17 +3,15 @@ import dynamic from "next/dynamic";
 import { SectionWrapper } from "../../../hoc";
 import { technologies } from "../../../../public/data";
 import styled from "styled-components";
-import { motion, Variants} from 'framer-motion'
-import {  fadeIn, slideIn } from "../../../motion/motion";
+import { motion } from 'framer-motion';
+import { fadeIn } from "../../../motion/motion";
 
-// Use dynamic import for BallCanvas if it's a heavy component
 const BallCanvas = dynamic(() => import("../../ui/BallCanvas"), { ssr: false });
 
-// Define the type for a single technology
 interface Technology {
     name: string;
     icon: string;
-    num:number;
+    num: number;
 }
 
 const Tech: React.FC = () => {
@@ -30,7 +28,6 @@ const Tech: React.FC = () => {
                 ))}
             </div>
         </TechContainer>
-
     );
 };
 
