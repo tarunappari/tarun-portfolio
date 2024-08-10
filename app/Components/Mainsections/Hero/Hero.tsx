@@ -110,7 +110,7 @@ const Hero: React.FC = () => {
           setLoader(false); // Hide preloader
         },
       });
-    }, 4000);
+    }, 2000);
 
 
     const timeoutId = window.setTimeout(() => {

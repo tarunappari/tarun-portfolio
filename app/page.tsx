@@ -1,16 +1,25 @@
-"use client";
-
-import { Navbar } from "./Components/Mainsections/Navbar/Navbar";
-import Hero from "./Components/Mainsections/Hero/Hero";
-import { navItems } from "../public/data";
-import Projects from "./Components/Mainsections/Projects/Projects";
+import React, { useState, useEffect } from 'react';
+import { Navbar } from './Components/Mainsections/Navbar/Navbar';
+import Hero from './Components/Mainsections/Hero/Hero';
+import { navItems } from '../public/data';
+import Projects from './Components/Mainsections/Projects/Projects';
 import { GlobalStyles } from './GlobalStyles';
-import Experience from "./Components/Mainsections/Experience/Experience";
-import Contact from "./Components/Mainsections/Contact/Contact";
-import Tech from "./Components/Mainsections/Tech/Tech";
-import StarsCanvas from "./Components/Stars";
+import Experience from './Components/Mainsections/Experience/Experience';
+import Contact from './Components/Mainsections/Contact/Contact';
+import Tech from './Components/Mainsections/Tech/Tech';
+import StarsCanvas from './Components/Stars';
 
 export default function Home() {
+  const [showStarsCanvas, setShowStarsCanvas] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowStarsCanvas(true);
+    }, 5000); // 5000 milliseconds = 5 seconds
+
+    return () => clearTimeout(timer); // Clean up the timer on component unmount
+  }, []);
+
   return (
     <main>
       <GlobalStyles />
@@ -21,7 +30,7 @@ export default function Home() {
         <Projects idName="#projects" />
         <Tech idName="tech" />
         <Contact idName="#contact" />
-        <StarsCanvas />
+        {showStarsCanvas && <StarsCanvas />} {/* Conditionally render StarsCanvas */}
       </div>
     </main>
   );
