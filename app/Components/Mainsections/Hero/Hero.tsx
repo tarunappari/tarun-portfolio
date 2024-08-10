@@ -72,8 +72,13 @@ const Hero: React.FC = () => {
     handleResize();
     window.addEventListener('resize', handleResize);
 
+    const timeoutId = window.setTimeout(() => {
+      setLoader(false);
+    }, 5000);
+
     return () => {
       window.removeEventListener('resize', handleResize);
+      clearTimeout(timeoutId);
     };
   }, [handleResize]);
 
@@ -148,15 +153,8 @@ const Hero: React.FC = () => {
       });
     }, 2000);
 
+    return () => clearTimeout(timer);
 
-    const timeoutId = window.setTimeout(() => {
-      setLoader(false);
-    }, 5000);
-
-    return () => {
-      clearTimeout(timer);
-      clearTimeout(timeoutId);
-    }
   }, []);
 
 
