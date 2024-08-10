@@ -26,8 +26,8 @@ const Contact: React.FC = () => {
     if (width < 650) {
       TechguySetScale(1.6);
       computerSetScale(1.4);
-      TechguySetPosition([0, -1.9, -1.8]);
-      computerSetPosition([0, -0.1, 1.5]);
+      TechguySetPosition([0, -2.3, -1.8]);
+      computerSetPosition([0, -0.5, 1.5]);
     } else if (width < 910) {
       TechguySetScale(1);
       computerSetScale(0.8);
@@ -91,6 +91,8 @@ let ContactContainer = styled.div`
     @media only screen and (max-width:650px){
       display: flex;
       flex-direction: column;
-      gap: 4rem;
+      .globe-continer{
+        min-height: 70vh;
+      }
     }
 `
