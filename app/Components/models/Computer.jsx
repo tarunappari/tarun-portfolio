@@ -54,4 +54,3 @@ export default function Computer({ scale = [1, 1, 1], ...props }) {
 }
 
 useGLTF.preload('/sci_-_fi_computer_game_ready.glb')
-
