@@ -117,10 +117,5 @@ export const navItems = [
       icon: "/TechIcons/git.png",
       num:1.2
     },
-    {
-      name: "TypeScript",
-      icon: "/TechIcons/typeScript.png",
-      num:1.3
-    },
   ];
 
