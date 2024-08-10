@@ -84,37 +84,51 @@ const Hero: React.FC = () => {
   useEffect(() => {
     function startLoader() {
       const counterElement = document.getElementById('counter') as HTMLElement;
-      let currentValue = 0;
-
+      let currentValue = 1; // Start from 1
+      const interval = 10; // Increment interval (1-10, 10-20, etc.)
+      const totalDuration = 2000; // 2 seconds
+      const numberOfIntervals = 10; // Number of intervals to reach 100
+  
       function updateCounter() {
-        if (currentValue === 100) {
+        const remainingTime = totalDuration - (Date.now() - startTime);
+        const timePerInterval = remainingTime / numberOfIntervals;
+        const increment = Math.floor(Math.random() * interval) + 1;
+        
+        if (currentValue >= 100) {
+          counterElement.textContent = '100';
           return;
         }
-
-        currentValue += Math.floor(Math.random() * 10) + 1;
-
-        if (currentValue > 100) {
-          currentValue = 100;
+  
+        // Increment by a fixed interval within the current range
+        currentValue += increment;
+  
+        // Make sure currentValue does not exceed the next interval's upper limit
+        if (currentValue > Math.ceil(currentValue / 10) * 10) {
+          currentValue = Math.ceil(currentValue / 10) * 10;
         }
-
-        counterElement.innerText = currentValue.toString();
-
-        const delay = Math.floor(Math.random() * 200) + 50;
-        setTimeout(updateCounter, delay);
+  
+        counterElement.textContent = currentValue.toString();
+  
+        if (Date.now() - startTime < totalDuration) {
+          setTimeout(updateCounter, timePerInterval);
+        } else {
+          counterElement.textContent = '100'; // Ensure it ends at 100
+        }
       }
-
+  
+      const startTime = Date.now();
       updateCounter();
     }
-
+  
     startLoader();
-
-    // Timer to hide preloader after 5 seconds
+  
+    // Timer to hide preloader after 2 seconds
     const timer = setTimeout(() => {
       gsap.to('.counter', {
         duration: 1.25,
         opacity: 0,
       });
-
+  
       gsap.to('.bar', {
         duration: 2.5,
         height: 0,
@@ -123,7 +137,7 @@ const Hero: React.FC = () => {
         },
         ease: 'power4.inOut',
       });
-
+  
       gsap.from('.text-element', {
         duration: 2.5,
         y: 700,
@@ -135,10 +149,11 @@ const Hero: React.FC = () => {
           setLoader(false); // Hide preloader
         },
       });
-    }, 1000); // 5 seconds
-
+    }, 2000); // 2 seconds
+  
     return () => clearTimeout(timer);
   }, []);
+  
 
   return (
     <HeroContainer>
@@ -244,9 +259,10 @@ let HeroContainer = styled.div`
     justify-content: flex-end;
     align-items: flex-end;
     z-index: 150;
+    font-weight: 800;
     color: #bcbcc4;
     padding: 0.2em 0.4em;
-    font-size: 20vw;
+    font-size: 15vw;
 }
 
   .hero-container {
@@ -369,6 +385,10 @@ let HeroContainer = styled.div`
 
   @media only screen and (max-width: 650px) {
     padding-top: 2rem;
+
+    .counter{
+      bottom: 2rem;
+    }
 
     .hero-container {
       display: flex;

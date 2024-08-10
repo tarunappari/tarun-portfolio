@@ -46,6 +46,7 @@ let ContactContainer = styled.div`
     }
 
     @media only screen and (max-width:650px){
-      grid-template-columns: 1fr !important;
+      display: flex;
+      flex-direction: column;
     }
 `
