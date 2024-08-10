@@ -12,6 +12,7 @@ import myImg from '../../../../public/white-crop.png';
 import { Canvas } from '@react-three/fiber';
 import { Environment, OrbitControls } from "@react-three/drei";
 import dynamic from 'next/dynamic';
+import CanvasLoader from "../../Loader";
 
 const TechGuy = dynamic(() => import("../../models/TechGuy"), { suspense: true });
 const Computer = dynamic(() => import("../../models/Computer"), { suspense: true });
@@ -183,7 +184,7 @@ const Hero: React.FC = () => {
           <Canvas>
             <ambientLight intensity={-1} />
             <OrbitControls enableZoom={false} />
-            <Suspense fallback={null}>
+            <Suspense fallback={<CanvasLoader />}>
               <TechGuy position={TechguyPosition} scale={[TechguyScale, TechguyScale, TechguyScale]} />
               <Computer position={computerPosition} scale={[computerScale, computerScale, computerScale]} />
             </Suspense>
