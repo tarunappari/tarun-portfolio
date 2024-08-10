@@ -346,7 +346,7 @@ let HeroContainer = styled.div`
       min-height: 50vh;
 
       .my-img{
-      width: 15rem;
+      width: 18rem;
       margin-top: -1rem;
       margin-left: -2rem;
     }
