@@ -40,46 +40,7 @@ const Hero: React.FC = () => {
     },
   };
   const [loader, setLoader] = useState(true);
-  const [TechguyScale, TechguySetScale] = useState(1.3);
-  const [computerScale, computerSetScale] = useState(1.1);
-  const [TechguyPosition, TechguySetPosition] = useState([0, -2, -1.2]);
-  const [computerPosition, computerSetPosition] = useState([0, -0.5, 1.2]);
 
-  // Handle resize and set states accordingly
-  const handleResize = useCallback(() => {
-    const width = window.innerWidth;
-
-    if (width < 650) {
-      TechguySetScale(1.6);
-      computerSetScale(1.4);
-      TechguySetPosition([0, -1.9, -1.8]);
-      computerSetPosition([0, -0.1, 1.5]);
-    } else if (width < 910) {
-      TechguySetScale(1);
-      computerSetScale(0.8);
-      TechguySetPosition([0, -1.6, -0.9]);
-      computerSetPosition([0, -0.5, 0.9]);
-    } else {
-      TechguySetScale(1.3);
-      computerSetScale(1.1);
-      TechguySetPosition([0, -2, -1.2]);
-      computerSetPosition([0, -0.5, 1.2]);
-    }
-  }, []);
-
-  useEffect(() => {
-    handleResize();
-    window.addEventListener('resize', handleResize);
-
-    const timeoutId = window.setTimeout(() => {
-      setLoader(false);
-    }, 5000);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      clearTimeout(timeoutId);
-    };
-  }, [handleResize]);
 
   useEffect(() => {
     function startLoader() {
@@ -88,47 +49,47 @@ const Hero: React.FC = () => {
       const interval = 10; // Increment interval (1-10, 10-20, etc.)
       const totalDuration = 2000; // 2 seconds
       const numberOfIntervals = 10; // Number of intervals to reach 100
-  
+
       function updateCounter() {
         const remainingTime = totalDuration - (Date.now() - startTime);
         const timePerInterval = remainingTime / numberOfIntervals;
         const increment = Math.floor(Math.random() * interval) + 1;
-        
+
         if (currentValue >= 100) {
           counterElement.textContent = '100';
           return;
         }
-  
+
         // Increment by a fixed interval within the current range
         currentValue += increment;
-  
+
         // Make sure currentValue does not exceed the next interval's upper limit
         if (currentValue > Math.ceil(currentValue / 10) * 10) {
           currentValue = Math.ceil(currentValue / 10) * 10;
         }
-  
+
         counterElement.textContent = currentValue.toString();
-  
+
         if (Date.now() - startTime < totalDuration) {
           setTimeout(updateCounter, timePerInterval);
         } else {
           counterElement.textContent = '100'; // Ensure it ends at 100
         }
       }
-  
+
       const startTime = Date.now();
       updateCounter();
     }
-  
+
     startLoader();
-  
+
     // Timer to hide preloader after 2 seconds
     const timer = setTimeout(() => {
       gsap.to('.counter', {
         duration: 1.25,
         opacity: 0,
       });
-  
+
       gsap.to('.bar', {
         duration: 2.5,
         height: 0,
@@ -137,7 +98,7 @@ const Hero: React.FC = () => {
         },
         ease: 'power4.inOut',
       });
-  
+
       gsap.from('.text-element', {
         duration: 2.5,
         y: 700,
@@ -150,10 +111,18 @@ const Hero: React.FC = () => {
         },
       });
     }, 2000); // 2 seconds
-  
-    return () => clearTimeout(timer);
+
+
+    const timeoutId = window.setTimeout(() => {
+      setLoader(false);
+    }, 5000);
+
+    return () => {
+      clearTimeout(timer);
+      clearTimeout(timeoutId);
+    }
   }, []);
-  
+
 
   return (
     <HeroContainer>
@@ -176,7 +145,7 @@ const Hero: React.FC = () => {
       )}
       <div className="hero-container">
         <div className="hero-image-container text-element">
-          <Canvas>
+          {/* <Canvas>
             <ambientLight intensity={-1} />
             <OrbitControls enableZoom={false} />
             <Suspense fallback={null}>
@@ -184,8 +153,8 @@ const Hero: React.FC = () => {
               <Computer position={computerPosition} scale={[computerScale, computerScale, computerScale]} />
             </Suspense>
             <Environment preset="studio" background={false} resolution={256} />
-          </Canvas>
-          {/* <Image src={ myImg } alt="myImg" className="my-img" /> */}
+          </Canvas> */}
+          <Image src={ myImg } alt="myImg" className="my-img" />
         </div>
         <div
           className="hero-info text"

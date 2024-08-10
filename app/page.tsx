@@ -21,6 +21,7 @@ export default function Home() {
         <Projects idName="#projects" />
         <Tech idName="tech" />
         <Contact idName="#contact" />
+        <StarsCanvas />
       </div>
     </main>
   );
