@@ -385,7 +385,7 @@ let HeroContainer = styled.div`
 
       .slidingText {
         width: 150vw;
-        bottom: -18rem;
+        bottom: -23rem;
       }
     }
   }
