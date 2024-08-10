@@ -1,3 +1,5 @@
+"use client"; // Add this directive to mark the component as a Client Component
+
 import React, { useState, useEffect } from 'react';
 import { Navbar } from './Components/Mainsections/Navbar/Navbar';
 import Hero from './Components/Mainsections/Hero/Hero';
@@ -15,7 +17,7 @@ export default function Home() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowStarsCanvas(true);
-    }, 5000); // 5000 milliseconds = 5 seconds
+    }, 8000); // 5000 milliseconds = 8 seconds
 
     return () => clearTimeout(timer); // Clean up the timer on component unmount
   }, []);
