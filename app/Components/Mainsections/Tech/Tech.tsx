@@ -6,29 +6,28 @@ import styled from "styled-components";
 import { motion } from 'framer-motion';
 import { fadeIn } from "../../../motion/motion";
 
+// Use dynamic import for BallCanvas if it's a heavy component
 const BallCanvas = dynamic(() => import("../../ui/BallCanvas"), { ssr: false });
 
-interface Technology {
-    name: string;
-    icon: string;
-    num: number;
-}
-
 const Tech: React.FC = () => {
-    return (
-        <TechContainer>
-            <div>
-                <h1 className="h1 span-gradient">Technologies</h1>
-            </div>
-            <div className='tech-container flex flex-row flex-wrap justify-center gap-10'>
-                {technologies.map((technology: Technology) => (
-                    <motion.div variants={fadeIn('up','spring',technology.num,0.5)} className='w-20 h-20 ball' key={technology.name}>
-                        <BallCanvas icon={technology.icon} />
-                    </motion.div>
-                ))}
-            </div>
-        </TechContainer>
-    );
+  return (
+    <TechContainer>
+      <div>
+        <h1 className="h1 span-gradient">Technologies</h1>
+      </div>
+      <div className='tech-container flex flex-row flex-wrap justify-center gap-10'>
+        {technologies.map((technology) => (
+          <motion.div
+            key={technology.name}
+            variants={fadeIn('up', 'spring', technology.num, 0.5)}
+            className='w-20 h-20 ball'
+          >
+            <BallCanvas icon={technology.icon} />
+          </motion.div>
+        ))}
+      </div>
+    </TechContainer>
+  );
 };
 
 export default SectionWrapper(Tech, "");

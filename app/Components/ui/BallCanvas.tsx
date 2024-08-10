@@ -4,7 +4,7 @@ import { Decal, Float, OrbitControls, Preload, useTexture } from "@react-three/d
 import CanvasLoader from "../Loader";
 
 interface BallProps {
-    imgUrl: string;
+  imgUrl: string;
 }
 
 const Ball: React.FC<BallProps> = ({ imgUrl }) => {
