@@ -40,13 +40,13 @@ const Hero: React.FC = () => {
       },
     },
   };
+
   const [loader, setLoader] = useState(true);
   const [TechguyScale, TechguySetScale] = useState(1.3);
   const [computerScale, computerSetScale] = useState(1.1);
   const [TechguyPosition, TechguySetPosition] = useState([0, -2, -1.2]);
   const [computerPosition, computerSetPosition] = useState([0, -0.5, 1.2]);
 
-  // Handle resize and set states accordingly
   const handleResize = useCallback(() => {
     const width = window.innerWidth;
 
@@ -72,9 +72,7 @@ const Hero: React.FC = () => {
     handleResize();
     window.addEventListener('resize', handleResize);
 
-    const timeoutId = window.setTimeout(() => {
-      setLoader(false);
-    }, 5000);
+    const timeoutId = window.setTimeout(() => setLoader(false), 5000);
 
     return () => {
       window.removeEventListener('resize', handleResize);
@@ -82,14 +80,13 @@ const Hero: React.FC = () => {
     };
   }, [handleResize]);
 
-
   useEffect(() => {
     function startLoader() {
       const counterElement = document.getElementById('counter') as HTMLElement;
-      let currentValue = 1; // Start from 1
-      const interval = 10; // Increment interval (1-10, 10-20, etc.)
-      const totalDuration = 2000; // 2 seconds
-      const numberOfIntervals = 10; // Number of intervals to reach 100
+      let currentValue = 1; 
+      const interval = 10; 
+      const totalDuration = 2000; 
+      const numberOfIntervals = 10; 
 
       function updateCounter() {
         const remainingTime = totalDuration - (Date.now() - startTime);
@@ -101,10 +98,7 @@ const Hero: React.FC = () => {
           return;
         }
 
-        // Increment by a fixed interval within the current range
         currentValue += increment;
-
-        // Make sure currentValue does not exceed the next interval's upper limit
         if (currentValue > Math.ceil(currentValue / 10) * 10) {
           currentValue = Math.ceil(currentValue / 10) * 10;
         }
@@ -114,7 +108,7 @@ const Hero: React.FC = () => {
         if (Date.now() - startTime < totalDuration) {
           setTimeout(updateCounter, timePerInterval);
         } else {
-          counterElement.textContent = '100'; // Ensure it ends at 100
+          counterElement.textContent = '100';
         }
       }
 
@@ -124,39 +118,15 @@ const Hero: React.FC = () => {
 
     startLoader();
 
-    // Timer to hide preloader after 2 seconds
     const timer = setTimeout(() => {
-      gsap.to('.counter', {
-        duration: 1.25,
-        opacity: 0,
-      });
-
-      gsap.to('.bar', {
-        duration: 2.5,
-        height: 0,
-        stagger: {
-          amount: 0.5,
-        },
-        ease: 'power4.inOut',
-      });
-
-      gsap.from('.text-element', {
-        duration: 2.5,
-        y: 700,
-        stagger: {
-          amount: 0.5,
-        },
-        ease: 'power4.inOut',
-        onComplete: () => {
-          setLoader(false); // Hide preloader
-        },
-      });
+      gsap.to('.counter', { duration: 1.25, opacity: 0 });
+      gsap.to('.bar', { duration: 2.5, height: 0, stagger: { amount: 0.5 }, ease: 'power4.inOut' });
+      gsap.from('.text-element', { duration: 2.5, y: 700, stagger: { amount: 0.5 }, ease: 'power4.inOut', onComplete: () => setLoader(false) });
     }, 2000);
 
     return () => clearTimeout(timer);
 
   }, []);
-
 
   return (
     <HeroContainer>
@@ -164,74 +134,38 @@ const Hero: React.FC = () => {
         <div className="preloader">
           <h1 className='counter' id="counter">0</h1>
           <div className='overlay'>
-            <div className='bar'></div>
-            <div className='bar'></div>
-            <div className='bar'></div>
-            <div className='bar'></div>
-            <div className='bar'></div>
-            <div className='bar'></div>
-            <div className='bar'></div>
-            <div className='bar'></div>
-            <div className='bar'></div>
-            <div className='bar'></div>
+            {Array.from({ length: 10 }, (_, i) => <div key={i} className='bar'></div>)}
           </div>
         </div>
       )}
       <div className="hero-container">
         <div className="hero-image-container text-element">
-        <Canvas>
+          <Canvas>
             <ambientLight intensity={0.5} />
             <pointLight position={[10, 10, 10]} intensity={1} />
             <OrbitControls enableZoom={false} />
             <Suspense fallback={<CanvasLoader />}>
-              <TechGuy
-                position={TechguyPosition}
-                scale={[TechguyScale, TechguyScale, TechguyScale]}
-              />
-            </Suspense>
-            <Suspense fallback={<CanvasLoader />}>
-              <Computer
-                position={computerPosition}
-                scale={[computerScale, computerScale, computerScale]}
-              />
+              <TechGuy position={TechguyPosition} scale={[TechguyScale, TechguyScale, TechguyScale]} />
+              <Computer position={computerPosition} scale={[computerScale, computerScale, computerScale]} />
             </Suspense>
             <Environment preset="studio" background={false} resolution={256} />
           </Canvas>
-          {/* <Image src={ myImg } alt="myImg" className="my-img" /> */}
         </div>
-        <div
-          className="hero-info text"
-        >
+        <div className="hero-info">
           <motion.h2 className="text-element" variants={textVariant(0.5)}>TARUN APPARI</motion.h2>
-          <motion.h1 variants={textVariant(1)} className="h1 text-element">
-            Front-End Developer
-          </motion.h1>
-          <div className="h3-container">
-            <motion.h3 className="h3 text-element" variants={textVariant(1.5)}>
-              Transforming Concepts into
-            </motion.h3>
-            <motion.h3 className="h3 text-element" variants={textVariant(2)}>
-              Seamless <span className="h3 gradient-span">User Experiences</span>
-            </motion.h3>
+          <motion.h1 className="h1 text-element" variants={textVariant(1)}>Front-End Developer</motion.h1>
+          <div className="h3-container text-element">
+            <motion.h3 className="h3 " variants={textVariant(1.5)}>Transforming Concepts into</motion.h3>
+            <motion.h3 className="h3" variants={textVariant(2)}>Seamless <span className="gradient-span">User Experiences</span></motion.h3>
           </div>
-          <motion.div
-            variants={sliderVariant}
-            animate='scrollButton'
-            className="scroll text-element"
-          >
+          <motion.div variants={sliderVariant} animate='scrollButton' className="scroll text-element">
             <a href="#about"> <Image src={scroll} alt="scroll-img" className="scrollImg" /></a>
           </motion.div>
-          {
-            !loader &&
-            <motion.div
-              className="slidingText"
-              variants={sliderVariant}
-              initial="initial"
-              animate="animate"
-            >
+          {!loader && (
+            <motion.div className="slidingText" variants={sliderVariant} initial="initial" animate="animate">
               Front-End React Developer
             </motion.div>
-          }
+          )}
         </div>
       </div>
     </HeroContainer>
