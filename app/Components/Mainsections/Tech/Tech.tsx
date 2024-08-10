@@ -13,6 +13,7 @@ const BallCanvas = dynamic(() => import("../../ui/BallCanvas"), { ssr: false });
 interface Technology {
     name: string;
     icon: string;
+    num:number;
 }
 
 const Tech: React.FC = () => {
