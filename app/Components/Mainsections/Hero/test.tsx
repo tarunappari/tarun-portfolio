@@ -1,50 +1,40 @@
 "use client";
 
-import React, { useEffect, useState, useCallback, Suspense } from "react";
+import React, { Suspense, useEffect, useState, useCallback,memo  } from "react";
 import styled from "styled-components";
 import scroll from "../../../../public/scroll.png";
 import Image from "next/image";
 import { motion, Variants } from "framer-motion";
-import { textVariant } from '../../../motion/motion';
-import { SectionWrapper } from "@/app/hoc";
-import gsap from 'gsap';
-import myImg from '../../../../public/white-crop.png';
 import { Canvas } from '@react-three/fiber';
 import { Environment, OrbitControls } from "@react-three/drei";
 import dynamic from 'next/dynamic';
+import { textVariant } from '../../../motion/motion'
 import CanvasLoader from "../../Loader";
+import { SectionWrapper } from "@/app/hoc";
 
+// Dynamic imports without Canvas
 const TechGuy = dynamic(() => import("../../models/TechGuy"), { suspense: true });
 const Computer = dynamic(() => import("../../models/Computer"), { suspense: true });
 
 const Hero: React.FC = () => {
-
   const sliderVariant: Variants = {
-    initial: {
-      x: "100%",
-    },
+    initial: { x: "100%" },
     animate: {
       x: "-220%",
-      transition: {
-        repeat: Infinity,
-        repeatType: "mirror",
-        duration: 15,
-      },
+      transition: { repeat: Infinity, repeatType: "mirror", duration: 15 }
     },
     scrollButton: {
       opacity: 0,
       y: 10,
-      transition: {
-        duration: 2,
-        repeat: Infinity,
-      },
-    },
+      transition: { duration: 2, repeat: Infinity }
+    }
   };
-  const [loader, setLoader] = useState(true);
+
   const [TechguyScale, TechguySetScale] = useState(1.3);
   const [computerScale, computerSetScale] = useState(1.1);
   const [TechguyPosition, TechguySetPosition] = useState([0, -2, -1.2]);
   const [computerPosition, computerSetPosition] = useState([0, -0.5, 1.2]);
+  const [loader, setLoader] = useState(true);
 
   // Handle resize and set states accordingly
   const handleResize = useCallback(() => {
@@ -72,116 +62,21 @@ const Hero: React.FC = () => {
     handleResize();
     window.addEventListener('resize', handleResize);
 
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, [handleResize]);
-
-
-  useEffect(() => {
-    function startLoader() {
-      const counterElement = document.getElementById('counter') as HTMLElement;
-      let currentValue = 1; // Start from 1
-      const interval = 10; // Increment interval (1-10, 10-20, etc.)
-      const totalDuration = 2000; // 2 seconds
-      const numberOfIntervals = 10; // Number of intervals to reach 100
-
-      function updateCounter() {
-        const remainingTime = totalDuration - (Date.now() - startTime);
-        const timePerInterval = remainingTime / numberOfIntervals;
-        const increment = Math.floor(Math.random() * interval) + 1;
-
-        if (currentValue >= 100) {
-          counterElement.textContent = '100';
-          return;
-        }
-
-        // Increment by a fixed interval within the current range
-        currentValue += increment;
-
-        // Make sure currentValue does not exceed the next interval's upper limit
-        if (currentValue > Math.ceil(currentValue / 10) * 10) {
-          currentValue = Math.ceil(currentValue / 10) * 10;
-        }
-
-        counterElement.textContent = currentValue.toString();
-
-        if (Date.now() - startTime < totalDuration) {
-          setTimeout(updateCounter, timePerInterval);
-        } else {
-          counterElement.textContent = '100'; // Ensure it ends at 100
-        }
-      }
-
-      const startTime = Date.now();
-      updateCounter();
-    }
-
-    startLoader();
-
-    // Timer to hide preloader after 2 seconds
-    const timer = setTimeout(() => {
-      gsap.to('.counter', {
-        duration: 1.25,
-        opacity: 0,
-      });
-
-      gsap.to('.bar', {
-        duration: 2.5,
-        height: 0,
-        stagger: {
-          amount: 0.5,
-        },
-        ease: 'power4.inOut',
-      });
-
-      gsap.from('.text-element', {
-        duration: 2.5,
-        y: 700,
-        stagger: {
-          amount: 0.5,
-        },
-        ease: 'power4.inOut',
-        onComplete: () => {
-          setLoader(false); // Hide preloader
-        },
-      });
-    }, 2000);
-
-
     const timeoutId = window.setTimeout(() => {
       setLoader(false);
     }, 5000);
 
     return () => {
-      clearTimeout(timer);
+      window.removeEventListener('resize', handleResize);
       clearTimeout(timeoutId);
-    }
-  }, []);
-
+    };
+  }, [handleResize]);
 
   return (
     <HeroContainer>
-      {loader && (
-        <div className="preloader">
-          <h1 className='counter' id="counter">0</h1>
-          <div className='overlay'>
-            <div className='bar'></div>
-            <div className='bar'></div>
-            <div className='bar'></div>
-            <div className='bar'></div>
-            <div className='bar'></div>
-            <div className='bar'></div>
-            <div className='bar'></div>
-            <div className='bar'></div>
-            <div className='bar'></div>
-            <div className='bar'></div>
-          </div>
-        </div>
-      )}
       <div className="hero-container">
-        <div className="hero-image-container text-element">
-        <Canvas>
+        <div className="hero-image-container">
+          <Canvas>
             <ambientLight intensity={0.5} />
             <pointLight position={[10, 10, 10]} intensity={1} />
             <OrbitControls enableZoom={false} />
@@ -199,48 +94,35 @@ const Hero: React.FC = () => {
             </Suspense>
             <Environment preset="studio" background={false} resolution={256} />
           </Canvas>
-          {/* <Image src={ myImg } alt="myImg" className="my-img" /> */}
         </div>
-        <div
-          className="hero-info text"
-        >
-          <motion.h2 className="text-element" variants={textVariant(0.5)}>TARUN APPARI</motion.h2>
-          <motion.h1 variants={textVariant(1)} className="h1 text-element">
+        <div className="hero-info">
+          <motion.h2 variants={textVariant(0.5)}>TARUN APPARI</motion.h2>
+          <motion.h1 variants={textVariant(1)} className="h1">
             Front-End Developer
           </motion.h1>
           <div className="h3-container">
-            <motion.h3 className="h3 text-element" variants={textVariant(1.5)}>
+            <motion.h3 className="h3" variants={textVariant(1.5)}>
               Transforming Concepts into
             </motion.h3>
-            <motion.h3 className="h3 text-element" variants={textVariant(2)}>
+            <motion.h3 className="h3" variants={textVariant(2)}>
               Seamless <span className="h3 gradient-span">User Experiences</span>
             </motion.h3>
           </div>
-          <motion.div
-            variants={sliderVariant}
-            animate='scrollButton'
-            className="scroll text-element"
-          >
-            <a href="#about"> <Image src={scroll} alt="scroll-img" className="scrollImg" /></a>
+          <motion.div variants={sliderVariant} animate='scrollButton' className="scroll">
+            <a href="#about"> <Image src={scroll} alt="scroll-img" className="scrollImg" /> </a>
           </motion.div>
-          {
-            !loader &&
-            <motion.div
-              className="slidingText"
-              variants={sliderVariant}
-              initial="initial"
-              animate="animate"
-            >
+          {!loader && (
+            <motion.div className="slidingText" variants={sliderVariant} initial="initial" animate="animate">
               Front-End React Developer
             </motion.div>
-          }
+          )}
         </div>
       </div>
     </HeroContainer>
   );
 };
 
-export default SectionWrapper(Hero, '#hero');
+export default SectionWrapper(memo (Hero), '#hero');
 
 
 let HeroContainer = styled.div`
@@ -248,36 +130,6 @@ let HeroContainer = styled.div`
   position: relative;
   overflow: hidden !important;
   padding-top: 2rem;
-
-  .overlay{
-    position: fixed;
-    width: 100vw;
-    height: 115vh;
-    top: -1rem;
-    z-index: 99 !important;
-    display: flex;
-}
-
-.bar{
-    width: 10vw;
-    height: 120vh;
-    background: #1a1a1a;
-    z-index: 999 !important;
-}
-
-.counter{
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-    z-index: 150;
-    font-weight: 800;
-    color: #bcbcc4;
-    padding: 0.2em 0.4em;
-    font-size: 15vw;
-}
 
   .hero-container {
     display: grid;
@@ -289,23 +141,6 @@ let HeroContainer = styled.div`
   .hero-image-container {
     z-index: 9 !important;
     min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    width: 100%;
-    height: 100vh;
-
-
-    .my-img{
-      width: 25rem;
-      margin-top: -5rem;
-      padding-left: 2rem;
-    }
-  }
-
-  .hero-image-container:active{
-    cursor: grabbing;
   }
 
   .hero-info {
@@ -316,32 +151,27 @@ let HeroContainer = styled.div`
     min-height: 100vh;
     align-items: center;
     z-index: 3 !important;
-    position: relative;
 
     h2 {
       letter-spacing: 1rem;
       color: #3a80e9;
       font-weight: 700;
       font-size: 1.2rem;
-      position: relative;
     }
 
     .h1 {
       font-size: 3.3rem;
       font-weight: 700;
-      position: relative;
     }
 
     .h3-container {
       z-index: 2;
-      position: relative;
 
       .h3 {
         font-size: 1.9rem;
         font-weight: 600;
         color: #949494;
         display: flex;
-        position: relative;
       }
 
       .gradient-span {
@@ -371,7 +201,7 @@ let HeroContainer = styled.div`
       color: rgb(25, 25, 25);
       width: 50vw;
       font-weight: 500;
-      z-index: -3;
+      z-index: 1;
     }
   }
 
@@ -401,11 +231,7 @@ let HeroContainer = styled.div`
   }
 
   @media only screen and (max-width: 650px) {
-    padding-top: 2rem;
-
-    .counter{
-      bottom: 2rem;
-    }
+    padding-top: 4rem;
 
     .hero-container {
       display: flex;
@@ -415,16 +241,9 @@ let HeroContainer = styled.div`
     .hero-image-container {
       min-height: 50vh;
 
-      .my-img{
-      width: 15rem;
-      margin-top: -1rem;
-      margin-left: -2rem;
-    }
-
-      canvas{
+      canvas {
         min-height: 50vh !important;
       }
-      
     }
 
     .hero-info {
@@ -455,13 +274,12 @@ let HeroContainer = styled.div`
 
       .slidingText {
         width: 150vw;
-        bottom: -18rem;
       }
     }
   }
 
   @media only screen and (max-width: 330px) {
-    padding-top: 1rem;
+    padding-top: 4rem;
 
     .hero-info {
       gap: 0.4rem;
