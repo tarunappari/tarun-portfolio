@@ -10,6 +10,7 @@ import Experience from './Components/Mainsections/Experience/Experience';
 import Contact from './Components/Mainsections/Contact/Contact';
 import Tech from './Components/Mainsections/Tech/Tech';
 import StarsCanvas from './Components/Stars';
+import Footer from './Components/Mainsections/Footer/Footer';
 
 export default function Home() {
   const [showStarsCanvas, setShowStarsCanvas] = useState(false);
@@ -32,6 +33,7 @@ export default function Home() {
         <Projects idName="#projects" />
         {/* <Tech idName="tech" /> */}
         <Contact idName="#contact" />
+        <Footer idName=''/>
         {showStarsCanvas && <StarsCanvas />} {/* Conditionally render StarsCanvas */}
       </div>
     </main>
