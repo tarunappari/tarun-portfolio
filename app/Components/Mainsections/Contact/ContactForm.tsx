@@ -1,18 +1,58 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Label } from "../../ui/label";
 import { Input } from "../../ui/input";
 import { cn } from "@/lib/utils";
-import {
-  IconBrandGithub,
-  IconBrandLinkedin,
-} from "@tabler/icons-react";
+import emailjs from "@emailjs/browser";
 
 export function ContactForm() {
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setForm(prevForm => ({
+      ...prevForm,
+      [name]: value
+    }));
+  };
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Form submitted");
+
+    emailjs
+      .send(
+        'service_1m7w5kc',
+        'template_k1ddh8i',
+        {
+          from_name: form.name,
+          to_name: "Tarun",
+          from_email: form.email,
+          to_email: "tarunappari23@gmail.com",
+          message: form.message,
+        },
+        'o68Kg1nYsYE13E7Up'
+      )
+      .then(
+        () => {
+          alert("Thank you. I will get back to you as soon as possible.");
+
+          setForm({
+            name: "",
+            email: "",
+            message: "",
+          });
+        },
+        (error) => {
+          console.error(error);
+          alert("Ahh, something went wrong. Please try again.");
+        }
+      );
   };
+
   return (
     <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black">
       <h2 className="font-bold text-x1 text-neutral-800 dark:text-neutral-200">
@@ -22,17 +62,38 @@ export function ContactForm() {
       <form className="my-8" onSubmit={handleSubmit}>
         <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
           <LabelInputContainer>
-            <Label htmlFor="firstname">Your Name</Label>
-            <Input id="firstname"  type="text" />
+            <Label htmlFor="name">Your Name</Label>
+            <Input
+              id="name"
+              name="name"
+              type="text"
+              value={form.name}
+              onChange={handleChange}
+              required
+            />
           </LabelInputContainer>
         </div>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="email">Email Address</Label>
-          <Input id="email"  type="email" />
+          <Input
+            id="email"
+            name="email"
+            type="email"
+            value={form.email}
+            onChange={handleChange}
+            required
+          />
         </LabelInputContainer>
         <LabelInputContainer className="mb-4">
-          <Label htmlFor="email">Your Message</Label>
-          <Input id="email" type="text" />
+          <Label htmlFor="message">Your Message</Label>
+          <textarea
+            id="message"
+            name="message"
+            value={form.message}
+            onChange={handleChange}
+            className="w-full px-3 py-2 border bg-[#27272a] rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-black dark:focus:ring-white border-[#343434]"
+            rows={1}
+          />
         </LabelInputContainer>
 
         <button

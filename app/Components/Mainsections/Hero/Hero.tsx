@@ -72,7 +72,7 @@ const Hero: React.FC = () => {
     handleResize();
     window.addEventListener('resize', handleResize);
 
-    const timeoutId = window.setTimeout(() => setLoader(false), 5000);
+    const timeoutId = window.setTimeout(() => setLoader(false), 9000);
 
     return () => {
       window.removeEventListener('resize', handleResize);
