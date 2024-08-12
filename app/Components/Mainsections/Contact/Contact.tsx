@@ -70,7 +70,7 @@ const Contact: React.FC = () => {
   )
 }
 
-export default SectionWrapper(memo(Contact), '');
+export default SectionWrapper(memo(Contact), 'contact');
 
 let ContactContainer = styled.div`
     position: relative;

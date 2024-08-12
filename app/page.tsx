@@ -29,7 +29,7 @@ export default function Home() {
       <Navbar navItems={navItems} className="nav" />
       <div className="relative z-0">
         <Hero idName="#hero" />
-        <Experience idName="" />
+        <Experience idName="#about" />
         <Projects idName="#projects" />
         {/* <Tech idName="tech" /> */}
         <Contact idName="#contact" />

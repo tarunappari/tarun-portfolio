@@ -34,7 +34,7 @@ const Experience = () => {
     )
 }
 
-export default SectionWrapper(Experience , '');
+export default SectionWrapper(Experience , 'about');
 
 const ExperienceContainer = styled.div`
     min-height: 100vh;
