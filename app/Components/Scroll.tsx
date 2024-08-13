@@ -25,7 +25,7 @@ const Scroll: React.FC<ScrollProps> = ({ children }) => {
   }, []);
 
   return (
-    <div data-scroll-container ref={scrollRef}>
+    <div style={{zIndex:'-9'}} data-scroll-container ref={scrollRef}>
       {children}
     </div>
   );

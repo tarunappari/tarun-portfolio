@@ -2,10 +2,6 @@ import React, { Suspense, useRef, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Decal, Float, OrbitControls, Preload, useTexture } from "@react-three/drei";
 import CanvasLoader from "../Loader";
-import WebGLManager from "../../../lib/WebGl";
-import * as THREE from 'three';
-
-const webGLManager = new WebGLManager();
 
 interface BallProps {
   imgUrl: string;
@@ -39,18 +35,6 @@ const Ball: React.FC<BallProps> = ({ imgUrl }) => {
 
 const BallCanvas: React.FC<{ icon: string }> = ({ icon }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    if (canvasRef.current) {
-      const renderer = new THREE.WebGLRenderer({ canvas: canvasRef.current });
-      webGLManager.addRenderer(renderer);
-
-      return () => {
-        webGLManager.removeRenderer(renderer);
-        renderer.dispose();
-      };
-    }
-  }, []);
 
   return (
     <Canvas

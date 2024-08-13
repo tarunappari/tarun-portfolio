@@ -31,7 +31,7 @@ export default function Home() {
         <Hero idName="#hero" />
         <Experience idName="#about" />
         <Projects idName="#projects" />
-        {/* <Tech idName="tech" /> */}
+        <Tech idName="tech" />
         <Contact idName="#contact" />
         <Footer idName=''/>
         {showStarsCanvas && <StarsCanvas />} {/* Conditionally render StarsCanvas */}

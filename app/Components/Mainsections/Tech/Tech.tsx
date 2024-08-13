@@ -54,7 +54,7 @@ const Tech: React.FC = () => {
                         className='w-20 h-20 ball'
                         key={technology.name}
                     >
-                        {inView === 'inView' && <BallCanvas icon={technology.icon} />}
+                        <BallCanvas icon={technology.icon} />
                     </motion.div>
                 ))}
             </div>
