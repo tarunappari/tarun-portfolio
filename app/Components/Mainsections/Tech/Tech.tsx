@@ -104,6 +104,10 @@ let TechContainer = styled.div`
         }
     }
 
+    @media only screen and (max-width: 670px){
+        display: none !important;
+    }
+
     @media only screen and (max-width: 490px) {
         h1 {
             font-size: 1.9rem;
