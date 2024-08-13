@@ -140,7 +140,7 @@ const Hero: React.FC = () => {
       )}
       <div className="hero-container">
         <div className="hero-image-container text-element">
-          {/* <Canvas>
+          <Canvas>
             <ambientLight intensity={0.5} />
             <pointLight position={[10, 10, 10]} intensity={1} />
             <OrbitControls enableZoom={false} />
@@ -149,8 +149,8 @@ const Hero: React.FC = () => {
               <Computer position={computerPosition} scale={[computerScale, computerScale, computerScale]} />
             </Suspense>
             <Environment preset="studio" background={false} resolution={256} />
-          </Canvas> */}
-          <Image src={myImg} alt="myimg" className="my-img" />
+          </Canvas>
+          {/* <Image src={myImg} alt="myimg" className="my-img" /> */}
         </div>
         <div className="hero-info">
           <motion.h2 className="text-element" variants={textVariant(0.5)}>TARUN APPARI</motion.h2>
