@@ -99,6 +99,13 @@ let ContactContainer = styled.div`
     @media only screen and (max-width:650px){
       padding-top: 5rem;
       display: flex;
-      flex-direction: column;
+      flex-direction: column-reverse;
+
+      .globe-container{
+        .my-img{
+      width: 15rem;
+      margin-left: -2rem;
+      }
     }
+  }
 `
