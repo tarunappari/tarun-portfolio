@@ -103,6 +103,7 @@ let ContactContainer = styled.div`
 
       .globe-container{
         .my-img{
+          padding-top: 1rem;
       width: 15rem;
       margin-left: -2rem;
       }
