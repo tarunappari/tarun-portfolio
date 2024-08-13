@@ -141,7 +141,7 @@ const Hero: React.FC = () => {
       <div className="hero-container">
         <div className="hero-image-container text-element">
           <Canvas>
-            <ambientLight intensity={0.5} />
+            <ambientLight intensity={-0.5} />
             <pointLight position={[10, 10, 10]} intensity={1} />
             <OrbitControls enableZoom={false} />
             <Suspense fallback={<CanvasLoader />}>
