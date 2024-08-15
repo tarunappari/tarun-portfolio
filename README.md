@@ -38,3 +38,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 can't able to do any code today coz of part time became full time just for today 
 
 came to take bike 
+
+today at nagaram can't able to do
