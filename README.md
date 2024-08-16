@@ -40,3 +40,5 @@ can't able to do any code today coz of part time became full time just for today
 came to take bike 
 
 today at nagaram can't able to do
+
+today spent entire day at bike shed
