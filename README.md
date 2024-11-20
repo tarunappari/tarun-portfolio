@@ -36,3 +36,9 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
 can't able to do any code today coz of part time became full time just for today 
+
+came to take bike 
+
+today at nagaram can't able to do
+
+today spent entire day at bike shed
