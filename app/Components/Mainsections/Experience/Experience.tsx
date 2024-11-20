@@ -15,6 +15,24 @@ const Experience = () => {
             <div className='exp-card-container'>
                 <div className='exp-card' >
                     <TextRevealCard
+                        text="Associate Front-End Developer"
+                        revealText="at The Alter Office"
+                        className='exp-info-container'
+                    >
+                        <div className='exp-info'>
+                            <TextRevealCardTitle className='info-text'>
+                                Associate Front-End Developer
+                            </TextRevealCardTitle>
+                            <TextRevealCardDescription className='info-para'>
+                                At Alter Office, developed a CRM web application using Next.js, ensuring a seamless user experience with API integrations for dynamic data handling. Managed application state effectively with Zustand, optimizing performance and maintainability. Designed responsive and scalable components, adhering to best practices in modern web development. Collaborated on version control using Git, enhancing teamwork and project delivery efficiency.
+                            </TextRevealCardDescription>
+                        </div>
+                    </TextRevealCard>
+                </div>
+            </div>
+            <div className='exp-card-container' style={{marginTop:'-2rem'}}>
+                <div className='exp-card' >
+                    <TextRevealCard
                         text="Front-End Developer"
                         revealText="at DeepThought"
                         className='exp-info-container'
@@ -34,7 +52,7 @@ const Experience = () => {
     )
 }
 
-export default SectionWrapper(Experience , 'about');
+export default SectionWrapper(Experience, 'about');
 
 const ExperienceContainer = styled.div`
     min-height: 100vh;

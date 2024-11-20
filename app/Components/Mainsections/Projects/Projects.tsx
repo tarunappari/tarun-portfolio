@@ -1,6 +1,4 @@
-
 "use client"
-
 import React from 'react';
 import { projects } from '../../../../public/data';
 import { CardContainer, CardBody, CardItem } from '../../ui/3d-card'; // Adjust the import path as needed
@@ -8,7 +6,7 @@ import Image from 'next/image';
 import styled from 'styled-components';
 import { motion } from "framer-motion";
 import { SectionWrapper } from '../../../hoc/index'
-import { slideIn , textVariant} from '../../../motion/motion'
+import { slideIn, textVariant } from '../../../motion/motion'
 
 const Projects = () => {
 
@@ -16,9 +14,8 @@ const Projects = () => {
   return (
     <ProjectsMainContainer className="main-container" >
       <div className='featured-container'>
-        <h1 
-        >
-           Featured <span className='span-gradient'>Works</span>
+        <h1>
+          Featured <span className='span-gradient'>Works</span>
         </h1>
       </div>
       <ProjectContainer className="projects-container">
@@ -38,12 +35,14 @@ const Projects = () => {
                     <Image key={index} src={icon} alt={'icon-img'} width={20} height={20} />
                   ))}
                 </div>
-                <div className="live-button">
-                  <button className="px-7 py-1.5 rounded-full relative bg-slate-700 text-white text-sm hover:shadow-2xl hover:shadow-white/[0.1] transition duration-200 border border-slate-600">
-                    <div className="absolute inset-x-0 h-px w-1/2 mx-auto -top-px shadow-2xl  bg-gradient-to-r from-transparent via-teal-500 to-transparent" />
-                    <span className="relative z-20"><a href={project.link} className='btn' target="_blank" rel="noopener noreferrer">Live Site</a></span>
-                  </button>
-                </div>
+                <a href={project.link} className='btn' target="_blank" rel="noopener noreferrer">
+                  <div className="live-button">
+                    <button className="px-7 py-1.5 rounded-full relative bg-slate-700 text-white text-sm hover:shadow-2xl hover:shadow-white/[0.1] transition duration-200 border border-slate-600">
+                      <div className="absolute inset-x-0 h-px w-1/2 mx-auto -top-px shadow-2xl  bg-gradient-to-r from-transparent via-teal-500 to-transparent" />
+                      <span className="relative z-20">Live Site</span>
+                    </button>
+                  </div>
+                </a>
               </CardItem>
             </CardBody>
           </CardContainer>
@@ -53,7 +52,7 @@ const Projects = () => {
   );
 };
 
-export default SectionWrapper(Projects , 'projects');
+export default SectionWrapper(Projects, 'projects');
 
 
 let ProjectsMainContainer = styled.div`
