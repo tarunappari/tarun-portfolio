@@ -17,11 +17,11 @@ export const projects = [
   },
   {
     id: 2,
-    title: "CRM Project",
-    des: "ecosystem is a software platform designed to help businesses manage interactions with their customers, clients, and prospects effectively.",
-    img: "/crm.png",
-    iconLists: ["/next.svg", "/tail.svg", "/ts.svg","/zustand.svg"],
-    link: "https://crm-dashboard-rosy.vercel.app/",
+    title: "FlashType",
+    des: "FlashTypee lets users measure typing speed in various time modes and create accounts to save and analyze their results.",
+    img: "/flashtype.png",
+    iconLists: ["/re.svg", "/firebase.svg", "/js.svg", "/mu.svg"],
+    link: "https://flashtypee.netlify.app/",
   },
   {
     id: 3,
@@ -33,11 +33,11 @@ export const projects = [
   },
   {
     id: 4,
-    title: "FlashType",
-    des: "FlashTypee lets users measure typing speed in various time modes and create accounts to save and analyze their results.",
-    img: "/flashtype.png",
-    iconLists: ["/re.svg", "/firebase.svg", "/js.svg", "/mu.svg"],
-    link: "https://flashtypee.netlify.app/",
+    title: "CRM Project",
+    des: "ecosystem is a software platform designed to help businesses manage interactions with their customers, clients, and prospects effectively.",
+    img: "/crm.png",
+    iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/zustand.svg"],
+    link: "https://crm-dashboard-rosy.vercel.app/",
   },
 ];
 
