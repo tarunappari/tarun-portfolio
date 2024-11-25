@@ -17,7 +17,7 @@
 }
 
 /* Disable text selection */
-body {
+h1,p,h3,h2,h4,img {
   user-select: none; /* Prevents text selection */
   -webkit-user-select: none; /* For Safari */
   -moz-user-select: none; /* For Firefox */
@@ -25,12 +25,12 @@ body {
 }
 
 /* Disable text copying via dragging */
-body {
+h1,p,h3,h2,h4,img {
   -webkit-user-drag: none; /* Prevents text dragging on webkit browsers */
 }
 
 /* Optionally disable context menu on right-click */
-body {
+h1,p,h3,h2,h4,img {
   pointer-events: none; /* Disables pointer events like right-clicking */
 }
 

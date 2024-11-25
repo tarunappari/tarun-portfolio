@@ -163,9 +163,9 @@ const Hero: React.FC = () => {
             <a href="#about"> <Image src={scroll} alt="scroll-img" className="scrollImg" /></a>
           </motion.div>
           {!loader && (
-            <motion.div className="slidingText" variants={sliderVariant} initial="initial" animate="animate">
+            <motion.h4 className="slidingText" variants={sliderVariant} initial="initial" animate="animate">
               Front-End React Developer
-            </motion.div>
+            </motion.h4>
           )}
         </div>
       </div>
