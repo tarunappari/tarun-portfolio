@@ -154,7 +154,7 @@ const Hero: React.FC = () => {
         </div>
         <div className="hero-info">
           <motion.h2 className="text-element" variants={textVariant(0.5)}>TARUN APPARI</motion.h2>
-          <motion.h1 className="h1 text-element" variants={textVariant(1)}>Front-End Developer</motion.h1>
+          <motion.h1 className="h1 text-element" variants={textVariant(1)}>Full-Stack Developer</motion.h1>
           <div className="h3-container text-element">
             <motion.h3 className="h3 " variants={textVariant(1.5)}>Transforming Concepts into</motion.h3>
             <motion.h3 className="h3" variants={textVariant(2)}>Seamless <span className="gradient-span">User Experiences</span></motion.h3>
@@ -164,7 +164,7 @@ const Hero: React.FC = () => {
           </motion.div>
           {!loader && (
             <motion.h4 className="slidingText" variants={sliderVariant} initial="initial" animate="animate">
-              Front-End React Developer
+              Full-Stack Developer
             </motion.h4>
           )}
         </div>
