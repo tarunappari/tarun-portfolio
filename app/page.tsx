@@ -15,13 +15,13 @@ import Footer from './Components/Mainsections/Footer/Footer';
 export default function Home() {
   const [showStarsCanvas, setShowStarsCanvas] = useState(false);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowStarsCanvas(true);
-    }, 5000); // 5000 milliseconds = 8 seconds
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setShowStarsCanvas(true);
+  //   }, 5000); // 5000 milliseconds = 8 seconds
 
-    return () => clearTimeout(timer); // Clean up the timer on component unmount
-  }, []);
+  //   return () => clearTimeout(timer); // Clean up the timer on component unmount
+  // }, []);
 
   return (
     <main>
@@ -34,7 +34,7 @@ export default function Home() {
         <Tech idName="tech" />
         <Contact idName="#contact" />
         <Footer idName=''/>
-        {showStarsCanvas && <StarsCanvas />} {/* Conditionally render StarsCanvas */}
+{/*         {showStarsCanvas && <StarsCanvas />} */}
       </div>
     </main>
   );
